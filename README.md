@@ -15,7 +15,7 @@ For a purpose of this exercise, I did not spend too much time on beautification 
    docker compose up -d db
    ```
 
-   The database schema is initialized from `src/main/resources/schema.sql`, which contains all column names from `LoanStats_securev1_2017Q4.csv`.
+   The database schema is initialized from `src/main/resources/schema.sql`, which contains all column names from `LoanStats_securev1_2017Q4.csv`. This file has to be in the root directory
 
 2. Load the CSV. The import skips its first-line prospectus note, stops before the footer summary, and uses the next row as the CSV header:
 
