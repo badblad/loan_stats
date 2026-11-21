@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: loan_stats
+      POSTGRES_USER: loan_app
+      POSTGRES_PASSWORD: loan_password
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - loan_stats_data:/var/lib/postgresql/data
+      - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U loan_app -d loan_stats"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  loan_stats_data:
